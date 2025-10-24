@@ -87,20 +87,32 @@ def protein_target(weight_kg: float, muscle_pct: float) -> float:
 def recommendations(inp: Inputs, mes: float, dsi: dict) -> dict:
     rec = {}
     ratio = inp.calories_intake / compute_tdee(inp)
+
     if ratio > 1.1:
-        rec['Energy'] = 'Reduce energy intake by 10–15% or add 2–3k steps/day.'
+        rec['Energy'] = "Reduce energy intake by 10–15% or add 2–3k steps/day."
     elif ratio < 0.9:
-        rec['Energy'] = 'Increase intake ~10% with nutrient-dense foods.'
+        rec['Energy'] = "Increase intake ~10% with nutrient-dense foods."
     else:
-        rec['Energy'] = 'Energy balance near optimal window.'
-    rec['Protein'] = f'Target protein ≈ {protein_target(inp.weight_kg, inp.muscle_percent):.0f} g/day.'
+        rec['Energy'] = "Energy balance near optimal window."
+
+    rec['Protein'] = f"Target protein ≈ {protein_target(inp.weight_kg, inp.muscle_percent):.0f} g/day."
+
     if dsi['hypertension'] >= 0.5:
-        rec['Sodium'] = 'Keep sodium < 2 g/day; increase potassium (leafy greens, legumes).'
-    if dsi['diabetes_t2'] >= 0.5 or inp.flags.get('diabetes',0):
-        rec['Timing'] = 'Front-load carbs earlier; last meal ≥4h before sleep; prioritize protein/veg at dinner.'
+        rec['Sodium'] = "Keep sodium < 2 g/day; increase potassium (leafy greens, legumes)."
+
+    if dsi['diabetes_t2'] >= 0.5 or inp.flags.get('diabetes', 0):
+        rec['Timing'] = "Front-load carbs earlier; last meal ≥4h before sleep; prioritize protein/veg at dinner."
+
     if inp.steps < 7000:
-        rec['Activity'] = 'Add 10–15 min post-meal walks (2–3x/day); aim ≥7,000–8,500 steps/day.'
+        rec['Activity'] = "Add 10–15 min post-meal walks (2–3x/day); aim ≥7,000–8,500 steps/day."
+
     if inp.sleep_hours >= 9.5 or inp.sleep_hours < 6:
-        rec['Sleep'] = 'Consolidate to 7–8 h/night with fixed wake time.'
-    rec['Summary'] = f\"MES={mes:.0f}/100, HTN risk={dsi['hypertension']:.2f}, T2D risk={dsi['diabetes_t2']:.2f}.\"
+        rec['Sleep'] = "Consolidate to 7–8 h/night with fixed wake time."
+
+    rec['Summary'] = (
+        f"MES={mes:.0f}/100, "
+        f"HTN risk={dsi['hypertension']:.2f}, "
+        f"T2D risk={dsi['diabetes_t2']:.2f}."
+    )
     return rec
+
