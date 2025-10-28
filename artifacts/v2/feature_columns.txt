@@ -1,0 +1,11 @@
+age
+bmi
+systolic
+diastolic
+a1c
+fasting_glucose
+hdl
+tg
+on_statin
+on_metformin
+on_antihypertensive

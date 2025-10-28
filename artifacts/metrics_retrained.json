@@ -1,0 +1,197 @@
+{
+  "hypertension": {
+    "target": "has_hypertension",
+    "roc_auc": 0.886,
+    "support": 829556,
+    "model_path": "artifacts\\model_hypertension.pkl",
+    "report": {
+      "0": {
+        "precision": 0.20224947521700487,
+        "recall": 0.8652535345158876,
+        "f1-score": 0.3278624447705944,
+        "support": 49441.0
+      },
+      "1": {
+        "precision": 0.9892207624102,
+        "recall": 0.7837024028508617,
+        "f1-score": 0.8745496743923241,
+        "support": 780115.0
+      },
+      "accuracy": 0.7885627974482735,
+      "macro avg": {
+        "precision": 0.5957351188136024,
+        "recall": 0.8244779686833746,
+        "f1-score": 0.6012060595814592,
+        "support": 829556.0
+      },
+      "weighted avg": {
+        "precision": 0.9423177836961424,
+        "recall": 0.7885627974482735,
+        "f1-score": 0.8419674697916366,
+        "support": 829556.0
+      }
+    },
+    "feature_columns": [
+      "age",
+      "has_dyslipidemia",
+      "has_obesity",
+      "has_diabetes",
+      "visit_pregnancy_clinic",
+      "visit_smoking_clinic",
+      "bmi",
+      "height",
+      "weight",
+      "systolic",
+      "diastolic",
+      "is_dead",
+      "total_outpatient_visits",
+      "total_inpatient_visits",
+      "total_emergency_visits",
+      "gender_Female",
+      "gender_Male",
+      "region_en_Asir",
+      "region_en_Bahah",
+      "region_en_Eastern Region",
+      "region_en_Hail",
+      "region_en_Jawf",
+      "region_en_Jizan",
+      "region_en_Madinah",
+      "region_en_Makkah",
+      "region_en_Najran",
+      "region_en_Northern Region",
+      "region_en_Qassim",
+      "region_en_Riyadh",
+      "region_en_Tabuk"
+    ]
+  },
+  "diabetes": {
+    "target": "has_diabetes",
+    "roc_auc": 0.887,
+    "support": 829556,
+    "model_path": "artifacts\\model_diabetes.pkl",
+    "report": {
+      "0": {
+        "precision": 0.21877123034798898,
+        "recall": 0.7688968211856639,
+        "f1-score": 0.3406255843149825,
+        "support": 41462.0
+      },
+      "1": {
+        "precision": 0.9859878069645659,
+        "recall": 0.8555464195895414,
+        "f1-score": 0.9161473361110979,
+        "support": 788094.0
+      },
+      "accuracy": 0.851215590026472,
+      "macro avg": {
+        "precision": 0.6023795186562775,
+        "recall": 0.8122216203876027,
+        "f1-score": 0.6283864602130402,
+        "support": 829556.0
+      },
+      "weighted avg": {
+        "precision": 0.9476415907963065,
+        "recall": 0.851215590026472,
+        "f1-score": 0.8873822101003518,
+        "support": 829556.0
+      }
+    },
+    "feature_columns": [
+      "age",
+      "has_dyslipidemia",
+      "has_hypertension",
+      "has_obesity",
+      "visit_pregnancy_clinic",
+      "visit_smoking_clinic",
+      "bmi",
+      "height",
+      "weight",
+      "systolic",
+      "diastolic",
+      "is_dead",
+      "total_outpatient_visits",
+      "total_inpatient_visits",
+      "total_emergency_visits",
+      "gender_Female",
+      "gender_Male",
+      "region_en_Asir",
+      "region_en_Bahah",
+      "region_en_Eastern Region",
+      "region_en_Hail",
+      "region_en_Jawf",
+      "region_en_Jizan",
+      "region_en_Madinah",
+      "region_en_Makkah",
+      "region_en_Najran",
+      "region_en_Northern Region",
+      "region_en_Qassim",
+      "region_en_Riyadh",
+      "region_en_Tabuk"
+    ]
+  },
+  "dyslipidemia": {
+    "target": "has_dyslipidemia",
+    "roc_auc": 0.923,
+    "support": 829556,
+    "model_path": "artifacts\\model_dyslipidemia.pkl",
+    "report": {
+      "0": {
+        "precision": 0.9918038276954617,
+        "recall": 0.85729910287262,
+        "f1-score": 0.9196594928847245,
+        "support": 794536.0
+      },
+      "1": {
+        "precision": 0.2058596923766565,
+        "recall": 0.8392632781267847,
+        "f1-score": 0.3306223002159827,
+        "support": 35020.0
+      },
+      "accuracy": 0.8565377141507023,
+      "macro avg": {
+        "precision": 0.5988317600360591,
+        "recall": 0.8482811904997023,
+        "f1-score": 0.6251408965503535,
+        "support": 829556.0
+      },
+      "weighted avg": {
+        "precision": 0.9586249179909154,
+        "recall": 0.8565377141507023,
+        "f1-score": 0.8947930794210651,
+        "support": 829556.0
+      }
+    },
+    "feature_columns": [
+      "age",
+      "has_hypertension",
+      "has_obesity",
+      "has_diabetes",
+      "visit_pregnancy_clinic",
+      "visit_smoking_clinic",
+      "bmi",
+      "height",
+      "weight",
+      "systolic",
+      "diastolic",
+      "is_dead",
+      "total_outpatient_visits",
+      "total_inpatient_visits",
+      "total_emergency_visits",
+      "gender_Female",
+      "gender_Male",
+      "region_en_Asir",
+      "region_en_Bahah",
+      "region_en_Eastern Region",
+      "region_en_Hail",
+      "region_en_Jawf",
+      "region_en_Jizan",
+      "region_en_Madinah",
+      "region_en_Makkah",
+      "region_en_Najran",
+      "region_en_Northern Region",
+      "region_en_Qassim",
+      "region_en_Riyadh",
+      "region_en_Tabuk"
+    ]
+  }
+}

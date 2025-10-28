@@ -1,0 +1,34 @@
+{
+  "numeric_cols": [
+    "age",
+    "visit_pregnancy_clinic",
+    "visit_smoking_clinic"
+  ],
+  "impute_map": {
+    "numeric": {
+      "age": 58.0,
+      "visit_pregnancy_clinic": 0.0,
+      "visit_smoking_clinic": 0.0
+    },
+    "categorical": {
+      "personalid": "0000041c16c64c611474ba54877ca4f6",
+      "gender": "Male",
+      "nationality_en": "Saudi Arabia",
+      "region_en": "Makkah",
+      "has_dyslipidemia": "0.0",
+      "has_hypertension": "1.0",
+      "has_obesity": "0.0",
+      "has_diabetes": "1.0",
+      "bmi": "24.22145",
+      "height": "160.0",
+      "weight": "70.0",
+      "systolic": "120.0",
+      "diastolic": "80.0",
+      "is_dead": "False",
+      "total_outpatient_visits": "1.0",
+      "total_inpatient_visits": "0.0",
+      "total_emergency_visits": "0.0",
+      "source_file": "20250929_datathon_2_individuals_above_50_alive.csv"
+    }
+  }
+}

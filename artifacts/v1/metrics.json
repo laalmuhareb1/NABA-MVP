@@ -1,0 +1,20 @@
+{
+  "hypertension": {
+    "roc_auc": 0.8553906168330917,
+    "n_train": 3318224,
+    "n_test": 829556,
+    "label_column": "has_hypertension"
+  },
+  "diabetes": {
+    "roc_auc": 0.84441169036728,
+    "n_train": 3318224,
+    "n_test": 829556,
+    "label_column": "has_diabetes"
+  },
+  "dyslipidemia": {
+    "roc_auc": 0.8803992139923617,
+    "n_train": 3318224,
+    "n_test": 829556,
+    "label_column": "has_dyslipidemia"
+  }
+}
