@@ -2,7 +2,7 @@ import os
 import requests
 import streamlit as st
 
-# ---- API base (FastAPI must be running on this URL/port) ----
+# ---- API base (FastAPI must be running locally or via your tunnel URL in NABA_API) ----
 API = os.getenv("NABA_API", "http://127.0.0.1:8010")
 
 # ---- Fallback thresholds (used if the API doesn’t return per-condition "thr") ----
@@ -37,7 +37,7 @@ with st.form("inp"):
     submit = st.form_submit_button("Predict & Score")
 
 if submit:
-    # ---- Build payload
+    # ---- Build payload (KEEP THIS INSIDE the `if submit:` block)
     features = {
         "age": age, "bmi": bmi, "systolic": systolic, "diastolic": diastolic,
         "hdl": hdl, "tg": tg, "a1c": a1c, "fasting_glucose": fpg,
@@ -46,35 +46,33 @@ if submit:
         "on_antihypertensive": int(on_antiH),
     }
 
-# ---- Call API safely
-try:
-    # Extended timeouts to prevent timeout errors on slow APIs
-    pred = requests.post(
-        f"{API}/predict",
-        json={"features": features},
-        timeout=60
-    ).json()
+    # ---- Call API safely (longer timeouts for tunnels)
+    try:
+        pred = requests.post(
+            f"{API}/predict",
+            json={"features": features},
+            timeout=60
+        ).json()
 
-    mes = requests.post(
-        f"{API}/mes/score",
-        json={"features": features},
-        timeout=90
-    ).json()
+        mes = requests.post(
+            f"{API}/mes/score",
+            json={"features": features},
+            timeout=90
+        ).json()
 
-except requests.exceptions.Timeout:
-    st.error(f"API at {API} took too long to respond (timeout). Please try again later.")
-    st.stop()
-except Exception as e:
-    st.error(f"Could not reach API at {API}. Error: {e}")
-    st.stop()
-
+    except requests.exceptions.Timeout:
+        st.error(f"API at {API} took too long to respond (timeout). Please try again.")
+        st.stop()
+    except Exception as e:
+        st.error(f"Could not reach API at {API}. Error: {e}")
+        st.stop()
 
     # ---- Threshold legend
     st.markdown("### 🧪 Risk Thresholds (per condition)")
     st.markdown(
         """
-        - **Hypertension:** ≥ **0.50**  
-        - **Diabetes:** ≥ **0.50**  
+        - **Hypertension:** ≥ **0.50**
+        - **Diabetes:** ≥ **0.50**
         - **Dyslipidemia:** ≥ **0.60**
         """
     )
@@ -130,10 +128,14 @@ except Exception as e:
         for name, val in worst:
             st.write(f"- **{name}**: {val:+.2f}")
 
-    # ---- Personalized Recommendations (via /advice), if available
+    # ---- Personalized Recommendations
     st.subheader("Personalized Recommendations")
     try:
-        advice = requests.post(f"{API}/advice", json={"features": features}, timeout=15).json()
+        advice = requests.post(
+            f"{API}/advice",
+            json={"features": features},
+            timeout=20
+        ).json()
         tabs = st.tabs(["Patient", "Practitioner", "Organization", "Policy"])
         mapping = {0: "patient", 1: "practitioner", 2: "organization", 3: "policy"}
         for i, tab in enumerate(tabs):
@@ -148,6 +150,6 @@ except Exception as e:
     except Exception as e:
         st.warning(f"Advice service unavailable: {e}")
 
-    # ---- Notes from API
+    # ---- Notes from API (if any)
     if isinstance(pred, dict) and pred.get("note"):
         st.caption(pred["note"])
