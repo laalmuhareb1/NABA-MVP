@@ -46,13 +46,28 @@ if submit:
         "on_antihypertensive": int(on_antiH),
     }
 
-    # ---- Call API safely
-    try:
-        pred = requests.post(f"{API}/predict", json={"features": features}, timeout=10).json()
-        mes  = requests.post(f"{API}/mes/score", json={"features": features}, timeout=10).json()
-    except Exception as e:
-        st.error(f"Could not reach API at {API}. Error: {e}")
-        st.stop()
+# ---- Call API safely
+try:
+    # Extended timeouts to prevent timeout errors on slow APIs
+    pred = requests.post(
+        f"{API}/predict",
+        json={"features": features},
+        timeout=60
+    ).json()
+
+    mes = requests.post(
+        f"{API}/mes/score",
+        json={"features": features},
+        timeout=90
+    ).json()
+
+except requests.exceptions.Timeout:
+    st.error(f"API at {API} took too long to respond (timeout). Please try again later.")
+    st.stop()
+except Exception as e:
+    st.error(f"Could not reach API at {API}. Error: {e}")
+    st.stop()
+
 
     # ---- Threshold legend
     st.markdown("### 🧪 Risk Thresholds (per condition)")
